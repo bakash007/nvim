@@ -2,5 +2,5 @@
 
 Minimal nvim config with LSP
 
-Theme: Tokyonight
+Theme: Tokyonight\n
 PackageManager: Packer
