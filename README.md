@@ -1,6 +1,6 @@
-# nvim config written in Lua
+#nvim config written in Lua
 
 Minimal nvim config with LSP
 
-Theme: Tokyonight "\n"
-PackageManager: Packer
+*Theme: Tokyonight
+*PackageManager: Packer
