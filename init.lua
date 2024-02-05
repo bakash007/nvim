@@ -17,13 +17,13 @@ vim.opt.scrolloff = 8
 require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
-  
   use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.0',
-    requires = { {'nvim-lua/plenary.nvim'} }
+      'nvim-telescope/telescope.nvim', tag = '0.1.5',
+      -- or                            , branch = '0.1.x',
+      requires = { {'nvim-lua/plenary.nvim'} }
   }
   use 'folke/tokyonight.nvim'
-  use {'catppuccino/nvim'}
+  use {'catppuccin/nvim'}
 end)
 
 -- theme
@@ -45,9 +45,8 @@ ColorMyPencils("catppuccin")
 
 -- telescope keybinds
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {}) -- fuzzy finder
-vim.keymap.set('n', '<leader>fs', function()
-  builtin.grep_string({search = vim.fn.input("Grep > ")}) -- find files with specific strings after >
-
-end)
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
