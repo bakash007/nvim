@@ -1,6 +1,6 @@
 -- remap
 vim.g.mapleader = " "
-vim.api.nvim_set_keymap("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- set
 vim.opt.nu = true
@@ -45,8 +45,8 @@ ColorMyPencils("catppuccin")
 
 -- telescope keybinds
 local builtin = require('telescope.builtin')
-vim.api.nvim_set_keymap('n', '<leader>ff', builtin.find_files, {}) -- fuzzy finder
-vim.api.nvim_set_keymap('n', '<leader>fs', function()
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {}) -- fuzzy finder
+vim.keymap.set('n', '<leader>fs', function()
   builtin.grep_string({search = vim.fn.input("Grep > ")}) -- find files with specific strings after >
 
 end)
