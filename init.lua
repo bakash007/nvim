@@ -13,35 +13,24 @@ vim.opt.smartindent = true
 vim.opt.swapfile = false
 vim.opt.scrolloff = 8
 
--- packer
-require('packer').startup(function(use)
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
-  use {
-      'nvim-telescope/telescope.nvim', tag = '0.1.5',
-      -- or                            , branch = '0.1.x',
-      requires = { {'nvim-lua/plenary.nvim'} }
-  }
-  use 'folke/tokyonight.nvim'
-  use {'catppuccin/nvim'}
-end)
-
--- theme
-function ColorMyPencils(color)
-  color = color or "tokyonight"
-  vim.cmd("colorscheme " .. color)
-
-  -- Adjust background settings if needed
-  vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
-  vim.cmd("hi NormalFloat guibg=NONE ctermbg=NONE")
+--lazy nvim
+local lazypath = vim.fn.stdpath("data") .. "lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable",
+        lazypath,
+    })
 end
+vim.opt.rtp:prepend(lazypath)
 
-require("catppuccin").setup({
-  flavour = "mocha",
-  transparent_background = true,
+require("lazy").setup({
+	{ "catppuccin/nvim", name = "catppuccin-mocha", priority = 1000}, 
+	{ 'nvim-telescope/telescope.nvim', tag = '0.1.0',dependencies = { 'nvim-lua/plenary.nvim' }}
 })
-
-ColorMyPencils("catppuccin")
 
 -- telescope keybinds
 local builtin = require('telescope.builtin')
